@@ -1,4 +1,3 @@
-// const seats = document.querySelectorAll(".seat-icon:not(.seat-icon--checked)");
 var checkedseat = document.getElementsByClassName("checkedSeat");
 checkedseat = [...checkedseat].map((i) => parseInt(i.innerText));
 
@@ -44,7 +43,7 @@ const loadSeats = (seats) => {
 loadSeats(seats);
 
 const testBtn = document.getElementById("SUBMIT");
-testBtn.addEventListener("click", (e) => {
+testBtn.addEventListener("click", async(e) => {
     e.preventDefault();
 
     const form = document.getElementById("SubmitForm");
@@ -74,7 +73,21 @@ testBtn.addEventListener("click", (e) => {
             return;
         }
         const result = { start, end, name, tel, email, price, seats, id };
-        console.log(result);
-        // window.location.replace("/paymentmethods");
+
+        try {
+            const response = await fetch(`http://localhost:3000/ticketinfo/`, {
+                method: "POST",
+                body: JSON.stringify(result),
+                headers: { "Content-Type": "application/json" },
+            });
+            if (response.ok) {
+                const data = await response.json();
+                const idPhieuxe = data.phieuxe.id;
+
+                window.location.replace(`/ticketinfo/${idPhieuxe}`);
+            } else throw new Error("Error in response");
+        } catch (error) {
+            console.log("Error : ", error);
+        }
     }
 });

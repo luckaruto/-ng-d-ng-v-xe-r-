@@ -9,16 +9,17 @@
     />
 
     <div class="info-box">
-      <h2 class="mb-2"><b>Mã đơn hàng: </b> #2X5G5J7</h2>
+      <h2 class="mb-2"><b>Mã đơn hàng: </b> {{data.id}}</h2>
       <section>
         <div class="ttdh col-8">
           <ul>
-            <li><b>Họ và tên: </b> Bùi Trần Huân</li>
-            <li><b>Email: </b> 20127507@student.hcmus.edu.vn</li>
-            <li><b>Số điện thoại: </b> 09091542454</li>
+            <li><b>Họ và tên: </b>{{data.ten}}</li>
+            <li><b>Email: </b> {{data.email}}</li>
+            <li><b>Số điện thoại: </b>{{data.sdt}}</li>
             <li><b>Chuyến đi: </b> Sài Gòn - Nha Trang</li>
-            <li><b>Thời gian: </b> 11:00 - 21:00</li>
-            <li><b>Số ghế: </b> 3</li>
+            <li><b>Điểm đón - trả: </b> {{data.diemdon}} - {{data.diemtra}}</li>
+            <li><b>Thời gian: </b>11:00 - 21:00</li>
+            <li><b>Số ghế: </b> {{data.soluong}}</li>
           </ul>
         </div>
         <div class="QRcode col-4">
