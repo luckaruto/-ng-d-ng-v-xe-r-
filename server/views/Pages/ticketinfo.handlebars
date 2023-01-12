@@ -16,10 +16,12 @@
             <li><b>Họ và tên: </b>{{data.ten}}</li>
             <li><b>Email: </b> {{data.email}}</li>
             <li><b>Số điện thoại: </b>{{data.sdt}}</li>
-            <li><b>Chuyến đi: </b> Sài Gòn - Nha Trang</li>
+            <li><b>Chuyến đi: </b> {{chuyenxe.tpdi}} - {{chuyenxe.tpden}}</li>
             <li><b>Điểm đón - trả: </b> {{data.diemdon}} - {{data.diemtra}}</li>
-            <li><b>Thời gian: </b>11:00 - 21:00</li>
+            <li><b>Thời gian: </b>{{chuyenxe.tgkhoihanh}}</li>
             <li><b>Số ghế: </b> {{data.soluong}}</li>
+            <hr />
+            <li><b>Trạng thái:</b> <h1 id="status">{{data.trangthai}}</h1></li>
           </ul>
         </div>
         <div class="QRcode col-4">
@@ -59,3 +61,8 @@
     <button>Quay Lại</button>
   </div>
 </div>
+<script>
+  const status=document.getElementById("status").innerText ;if(status=="1")
+  document.getElementById("status").innerText="Đã đặt chỗ" ;else
+  document.getElementById("status").innerText="Đang xử lí ";
+</script>

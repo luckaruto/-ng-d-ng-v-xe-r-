@@ -7,8 +7,19 @@ router.get("/:id", async function(req, res, next) {
     const response = await rp(
         `http://localhost:3000/api/phieuxe/${req.params.id}`
     );
-    const data = await JSON.parse(response)[0];
-    res.render("Pages/ticketinfo", { data: data });
+    if (JSON.parse(response).length != 0) {
+        const data = await JSON.parse(response)[0];
+        const chuyenxeId = data.chuyenxeId;
+        const chuyenxeRes = await rp(
+            `http://localhost:3000/api/chuyenxe/${chuyenxeId}`
+        );
+        const chuyenxe = JSON.parse(chuyenxeRes)[0];
+        res.render("Pages/ticketinfo", {
+            data: data,
+            chuyenxe: chuyenxe,
+            status: "success",
+        });
+    } else res.redirect("/error");
 });
 
 router.post("/", (req, res) => {

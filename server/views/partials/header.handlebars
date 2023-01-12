@@ -13,7 +13,7 @@
       </div>
       <ul class="nav nav-pills card-header-pills nav justify-content-end col">
         <li class="nav-item user">
-          <a class="nav-link" href="#">Trở thành đối tác</a>
+          <span class="nav-link" id="username"></span>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/qna">Trả lời câu hỏi</a>
@@ -51,7 +51,9 @@
     Object.prototype) { var items=document.querySelectorAll("li.user");
     [...items].map((item)=>item.style.display="none") }else{ var
     items=document.querySelectorAll(".hideUser");
-    [...items].map((item)=>item.style.display="none") }
-
+    [...items].map((item)=>item.style.display="none") }; var
+    user=JSON.parse(sessionStorage.getItem("user"));
+    document.getElementById("username").innerText =
+    `${user.role}:${user.username} `;
   </script>
 </section>
