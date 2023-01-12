@@ -28,12 +28,13 @@ router.get("/", async function (req, res) {
   const day = req.query.day;
   const brand = req.query.brand;
   const tpden = req.query.tpden;
-  const tpdi = req.query.tpden;
-
+  const tpdi = req.query.tpdi;
+  const title1 = `${tpdi} -  ${tpden}`;
 
   if (start && end) {
+    const title1 = "ALL"
     chuyenxe.map((item) => { if (item.tgkhoihanh >= start && item.tgkhoihanh <= end) { data.push(item) } });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
 
   }
@@ -41,44 +42,47 @@ router.get("/", async function (req, res) {
     chuyenxe.map((item) => {
       if (Date.parse(new Date(item.ngaykhoihanh)) == Date.parse(new Date(day)) && item.tpden == tpden && item.tpdi == tpdi) { data.push(item) }
     });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
   }
   else if (tpden && tpdi) {
     chuyenxe.map((item) => {
       if (item.tpden == tpden && item.tpdi == tpdi) { data.push(item) }
     });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title1 });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
   else if (tpden) {
     chuyenxe.map((item) => {
       if (item.tpden == tpden) { data.push(item) }
     });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title1 });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
   else if (tpdi) {
     chuyenxe.map((item) => {
       if (item.tpden == tpdi) { data.push(item) }
     });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title1 });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
   else if (day) {
+    const title1 = "ALL"
     chuyenxe.map((item) => { if (Date.parse(new Date(item.ngaykhoihanh)) == Date.parse(new Date(day))) { data.push(item) } });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
   else if (brand) {
+    const title1 = "ALL"
     chuyenxe.map((item) => { if (item.tennhaxe == brand) { data.push(item) } });
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
 
 
   else {
+    const title1 = "ALL"
     chuyenxe.map((item) => data.push(item));
-    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title });
+    await res.render("Pages/Booking", { data, Brand, Place, TypeBed, title, title1 });
 
   }
 });
