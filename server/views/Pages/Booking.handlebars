@@ -16,7 +16,7 @@
           </div>
 
           <a class="filter-btn" id="filter">Lọc</a>
-          <span class="reset-btn" id="reset">Reset</span>
+          <a class="reset-btn" id="reset">Reset</a>
         </div>
 
         <div class="options-container">
@@ -27,25 +27,25 @@
               <section class="">
                 Sáng sớm
                 <br />
-                0:00-6:00
+                00:00:00-06:00:00
               </section>
             </div>
             <div class="col-6 p-1 SelectTime">
               <section class="">
                 Trưa<br />
-                7:00-12:00
+                06:00:00-12:00:00
               </section>
             </div>
             <div class="col-6 p-1 SelectTime">
               <section class="">
                 Chiều<br />
-                13:00-19:00
+                12:00:00-18:00:00
               </section>
             </div>
             <div class="col-6 p-1 SelectTime">
               <section class="">
                 Tối<br />
-                20:00-5h:00
+                18:00:00-24:00:00
               </section>
             </div>
           </div>
@@ -241,8 +241,28 @@
     }
     object['PriceTicket'].push(value.value);
 
-    form.href = value;
-    console.log(object);
+    let tg = String(object['TimeGo'][object['TimeGo'].length - 1]);
+    let ngay = String(object['DateGo'][[object['DateGo'].length - 1]]);
+    let brand = String(object['NumerBrand'][object['NumerBrand'].length - 1]);
+    if (tg !== 'undefined') {
+      let time = tg.slice(tg.indexOf("\n") + 1)
+      let [timestart, timeend] = time.split('-');
+      const giatri = `/Booking?start=${timestart}&end=${timeend}`;
+      form.href = giatri;
+    }
+
+    else if (ngay) {
+      const giatri = `/Booking?day=${ngay}`;
+      form.href = giatri;
+
+    }
+    else if (brand) {
+      const giatri = `/Booking?brand=${brand}`;
+      form.href = giatri;
+
+    }
+
+
 
 
   }
@@ -299,6 +319,8 @@
         console.log(checkItemLocation2[i].querySelector('input[name="location-1"]:checked').checked = false);
       }
     }
+    reset.href = "/Booking";
+
   }
   reset.addEventListener('click', resetitem);
 
