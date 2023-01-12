@@ -1,9 +1,10 @@
-const controller = {}
-const title = 'Admin';
+const title = "Admin";
+const models = require("../models");
 
 
-controller.showlist = (req, res) => {
-    res.render('Pages/admin', {title});
-}
+const controller = {
+    
+};
 
-module.exports = controller
+module.exports = controller;
+
